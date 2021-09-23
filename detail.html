@@ -75,21 +75,21 @@
     <script>
 
         const handleform = async (event) => {
+            event.preventDefault();
 
+const data = {
+    name: document.querySelector('#name').value,
+    description: document.querySelector('#description').value,
+    brand: document.querySelector('#brand').value,
+    imageUrl: document.querySelector('#imageUrl').value,
+    price: document.querySelector('#price').value
+}
+     console.log(data)
             
 
             try {
 
-                event.preventDefault();
-
-            const data = {
-                name: document.querySelector('#name').value,
-                description: document.querySelector('#description').value,
-                brand: document.querySelector('#brand').value,
-                imageUrl: document.querySelector('#imageUrl').value,
-                price: document.querySelector('#price').value
-            }
-                 console.log(data)
+                
                 const response = await fetch('https://striveschool-api.herokuapp.com/api/product/', {
                     method: 'POST',
                     body: JSON.stringify(data),
