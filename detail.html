@@ -1,32 +1,4 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@rashuhiremath 
-Mo-Xiyad
-/
-Strive_School
-Public
-1
-00
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Strive_School/M3 - Advanced JavaScript/D8 - Rest API's Post/backoffice.html
-@Mo-Xiyad
-Mo-Xiyad fixed reload
-Latest commit 9597862 2 hours ago
- History
- 1 contributor
-129 lines (99 sloc)  4.83 KB
+
    
 <!doctype html>
 <html lang="en">
@@ -44,31 +16,14 @@ Latest commit 9597862 2 hours ago
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="./backoffice.html">Back Office <span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    
     <h1>Strive Shop!</h1>
 
     <div class="div">
         <div class="row justify-content-center">
             <div class="col-3">
 
-                <form onsubmit="handelform(event)">
+                <form onsubmit="handleform(event)">
 
                     <div class="form-group">
                         <label for="name">Product Name</label>
@@ -96,9 +51,13 @@ Latest commit 9597862 2 hours ago
                         <input id="price" type="number" class="form-control">
                     </div>
 
-                    <button type="button" class="btn btn-danger">Cencel</button>
+                   <div class=" d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary">Submit</button>
-
+                    <button type="button" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                      </svg></button>
+                    </div>
                 </form>
 
             </div>
@@ -115,9 +74,13 @@ Latest commit 9597862 2 hours ago
 
     <script>
 
-        const handelform = async (event) => {
+        const handleform = async (event) => {
 
-            event.preventDefault();
+            
+
+            try {
+
+                event.preventDefault();
 
             const data = {
                 name: document.querySelector('#name').value,
@@ -126,9 +89,7 @@ Latest commit 9597862 2 hours ago
                 imageUrl: document.querySelector('#imageUrl').value,
                 price: document.querySelector('#price').value
             }
-
-            try {
-
+                 console.log(data)
                 const response = await fetch('https://striveschool-api.herokuapp.com/api/product/', {
                     method: 'POST',
                     body: JSON.stringify(data),
@@ -137,13 +98,17 @@ Latest commit 9597862 2 hours ago
                         "Content-Type": "application/json"
                     }
                 })
-
+                console.log(handleform)
                 if (response.ok) {
+                    
+                    const responseEvent= await response.json()
+                    console.log(data)
+                    
 
                     // console.log(response.json())
-                    const responseEvent = await response.json()
+                    
                     alert("Appointment created successfully with an id of " + responseEvent._id)
-                    // window.location.assign("/")  //  Here i can provide a path where it should go after the post happen
+                     window.location.assign("/")  //  Here i can provide a path where it should go after the post happen
                     window.location.reload()
 
                 }
@@ -157,15 +122,3 @@ Latest commit 9597862 2 hours ago
 </body>
 
 </html>
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
